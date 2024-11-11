@@ -13,5 +13,4 @@ public interface ShortCurrencyMapper {
 
     ShortCurrencyDto convertToDto(Currency currency);
 
-    Currency convertToEntity(ShortCurrencyDto dto);
 }
