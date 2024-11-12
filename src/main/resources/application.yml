@@ -22,4 +22,9 @@ spring:
           auto: none
 client:
   url: https://cbr.ru/scripts/XML_daily.asp
+currency:
+  update:
+    rate:
+      cron: "0 0 0/1 ? * *"
+
 

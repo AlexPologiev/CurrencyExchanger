@@ -2,6 +2,8 @@ package ru.skillbox.currency.exchange.service;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.skillbox.currency.exchange.client.BankClient;
 import ru.skillbox.currency.exchange.entity.Currency;
@@ -15,12 +17,14 @@ import java.util.List;
 @Slf4j
 @Data
 @Component
+@EnableScheduling
 public class UpdateCurrencyService {
     private final BankClient bankClient;
     private final XmlParser xmlParser;
     private final XmlValuteCurrencyMapper mapper;
     private final CurrencyRepository repository;
 
+    @Scheduled(cron = "${currency.update.rate.cron}")
     public void updateCurrency() {
         String xmlString;
         try {
